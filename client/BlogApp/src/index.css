@@ -1,0 +1,36 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.Navbar{
+  height: 10vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.3fr 0.5fr;
+
+}
+.Sidebar{
+  width: 7%;
+}
+.Para-side{
+  display: none;
+  transition: all 300ms;
+}
+.Sidebar ul li{
+  list-style:none;
+}
+.List-Side{
+  height: 20px;
+  width: 100%;
+  display: flex;
+}
+/* .List-Side:hover .Para-side{
+  display: flex;
+} */
+.List-Side:hover .Sidebar{
+  width: 20%;
+}
+li.hovered {
+  background-color: grey;
+  border-radius: 8px;
+}
