@@ -63,7 +63,7 @@ const SideBar = () => {
       onMouseEnter={() =>{
         setStyle({
           width: "20%",
-          height: "100vh",
+          height: "auto",
           backgroundColor: "black",
           color: "white",
           display: "flex",
@@ -90,7 +90,7 @@ const SideBar = () => {
       onMouseLeave={() =>{
         setStyle({
           width: "7%",
-          height: "100vh",
+          height: "auto",
           backgroundColor: "black",
           color: "white",
           display: "flex",

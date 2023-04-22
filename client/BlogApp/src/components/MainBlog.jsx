@@ -5,6 +5,11 @@ const MainBlog = () => {
     return (
         <div className='Flex-Box-Cards'>
             <BlogsCards/>  
+            <BlogsCards/>   
+            <BlogsCards/>   
+            <BlogsCards/>   
+            <BlogsCards/>   
+            <BlogsCards/>   
         </div>
     );
 }
