@@ -14,6 +14,9 @@ const Model = new Schema({
     },
     Date:{
         type:Array
+    },
+    User:{
+        type:String,
     }
 })
 const BlogsModel = mongoose.model("Blogs",Model)

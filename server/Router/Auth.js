@@ -82,7 +82,8 @@ router.post("/Signin",async(req,res)=>{
     }
 })
 router.get("/Get",middleware,async(req,res)=>{
-    const User_id = req.User_id.ID;
-    console.log(User_id)
+    const User_id = req.user.ID;
+    const User_details = await UserModel.findById(User_id)
+    res.send(User_details)
 })
 module.exports = router;
