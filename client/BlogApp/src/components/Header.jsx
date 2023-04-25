@@ -12,7 +12,7 @@ const Header = () => {
         </div>
         <div className='Btn-Auth' style={{display:"flex",gap:"50px",alignSelf:"center",paddingRight:"20px"}}>
           <Link to="/signin"><button className='btn btn-dark' style={{height:"50px"}}>sign in</button></Link>
-          <Link to="/signup"><button className='btn btn-dark'style={{height:"50px"}}>sign in</button></Link>
+          <Link to="/signup"><button className='btn btn-dark'style={{height:"50px"}}>sign up</button></Link>
         </div>
     </div>
   );

@@ -5,7 +5,7 @@ import MainBlog from './MainBlog';
 
 const Blogs = () => {
     return (
-        <div className='FlexBox' style={{display:"flex",height:"70vh"}}>
+        <div className='FlexBox' style={{display:"flex",height:"84vh"}}>
             <SideBar/>
             <MainBlog/>
         </div>
