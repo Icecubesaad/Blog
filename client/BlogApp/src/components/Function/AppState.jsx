@@ -1,9 +1,12 @@
 import AppContext from "./AppContext";
 const AppState = (props) => {
-    const text1 = "Every new friend is a new adventure"
-    const text2 = "Let's get connected"
+  // Sendng data to database for User signup
+  const signup = async() =>{
+      const posting = fetch()  
+    }
+    
   return(
-  <AppContext.Provider value={{text1,text2}}>
+  <AppContext.Provider value={{}}>
     {props.children}
     </AppContext.Provider>)
 };
