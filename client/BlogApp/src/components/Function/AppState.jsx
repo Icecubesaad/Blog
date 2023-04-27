@@ -1,9 +1,6 @@
+import { useState } from "react";
 import AppContext from "./AppContext";
 const AppState = (props) => {
-  // Sendng data to database for User signup
-  const signup = async() =>{
-      const posting = fetch("")  
-    }
     
   return(
   <AppContext.Provider value={{}}>

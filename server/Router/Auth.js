@@ -11,7 +11,7 @@ router.post(
   [
     body("email").isEmail(),
     body("password").isLength({ min: 5 }),
-    body("name").isLength({ min: 10 }),
+    body("name").isLength({ min: 5 }),
   ],
   async (req, res) => {
     const { name, email, password } = req.body;
@@ -25,12 +25,19 @@ router.post(
         onlyErrors: true,
         attributeFilter: "password",
       });
+      const nameErrors = errors.array({
+        onlyErrors: true,
+        attributeFilter: "name",
+      });
       if (emailErrors.length > 0 && passwordErrors.length > 0) {
         return res.status(422).json({ emailErrors, passwordErrors });
       } else if (emailErrors.length > 0) {
         return res.status(405).json({ emailErrors });
       } else if (passwordErrors.length > 0) {
         return res.status(401).json({ passwordErrors });
+      }
+       else if (nameErrors.length > 0) {
+        return res.status(403).json({ nameErrors });
       }
     }
     try {
@@ -45,9 +52,9 @@ router.post(
             const salt = await bcrypt.genSalt(10);
             const parsedPass = await bcrypt.hash(password,salt)
           const Saving = await UserModel.create({
-            Username: name,
             Email: email,
             Password: parsedPass,
+            UserName: name,
           });
           res.send(Saving)
         }

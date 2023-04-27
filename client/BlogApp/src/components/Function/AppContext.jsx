@@ -1,4 +1,4 @@
 import { createContext } from "react"
 
-const AppContest = createContext()
-export default AppContest
+const AppContext = createContext()
+export default AppContext
