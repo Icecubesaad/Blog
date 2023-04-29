@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import {useNavigate} from 'react-router-dom'
 const Signin = (props) => {
+  const location = useNavigate()
   const [SignInCredentials,setSignInCredentials] = useState({
     "email":"",
     "password":""
@@ -21,6 +23,15 @@ const Signin = (props) => {
         })
     })
     const paresed = await data.json()
+    if(data.status === 200){
+      location("/")
+      try {
+        console.log("Set item to local storage")
+        localStorage.setItem('key',paresed)
+      } catch (error) {
+        console.log({"errors":"Cannot set it"})
+      }
+    }
 }
   return (
     <div class="login-form">

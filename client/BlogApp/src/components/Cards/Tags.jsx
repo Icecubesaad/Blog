@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Tags = () => {
+const Tags = (props) => {
     return (
-        <div className='Tags-Cards'>
-            
+        <div className='Tags-Cards' style={{display:"flex",flexDirection:"row",gap:"20px"}}>
+            {props.content.map(e=><div>{e}</div>)}
         </div>
     );
 }

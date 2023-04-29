@@ -283,3 +283,29 @@ li.hovered {
     display: none;
   }
 }
+.containerl{
+height: 200vh;
+width: 100%;
+}
+.containerli{
+  
+display: flex;
+gap: 30px;
+flex-direction: column;
+}
+.containerli input{
+  height: 50px;
+  width: 90%;
+  margin: auto;
+}
+#desc{
+  height: 300px;
+}
+.containerli textarea{
+  width: 90%;
+  margin: auto;
+}
+#desc::placeholder{
+  text-align: initial;
+}
+

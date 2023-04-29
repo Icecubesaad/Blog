@@ -9,7 +9,9 @@ export default defineConfig({
       "/api/blogs/Post":"http://localhost:3000",
       "/api/blogs/get":"http://localhost:3000",
       "/api/auth/Signup":"http://localhost:3000",
+      "/api/auth/Get":"http://localhost:3000",
       "/api/auth/Signin":"http://localhost:3000",
+      "/api/blogs/Post":"http://localhost:3000",
     },
   },
 })

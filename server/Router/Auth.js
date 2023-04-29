@@ -69,10 +69,9 @@ router.post("/Signin",async(req,res)=>{
     const {email,password} = req.body;
     const User_auth = await UserModel.findOne({Email:email})
     if(!User_auth){
-        res.send({errors:"NAHHH"})
+        res.status(402).json({error:"Invald credetials"})
     }
     else{
-        console.log(User_auth)
         const valid = await bcrypt.compare(password,User_auth.Password)
         if(valid){
             const User={
@@ -81,7 +80,7 @@ router.post("/Signin",async(req,res)=>{
                 }
             }
             const Token = await jwt.sign(User,jwt_secret)
-            res.send(Token)
+            res.json(Token)
         }
         else{
             res.send({error:"invalid credidential"})

@@ -10,7 +10,7 @@ const Model = new Schema({
         require:true
     },
     Tags:{
-        type:String
+        type:Array
     },
     Date:{
         type:Array

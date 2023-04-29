@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 const Header = () => {
   return (
@@ -13,6 +14,7 @@ const Header = () => {
         <div className='Btn-Auth' style={{display:"flex",gap:"50px",alignSelf:"center",paddingRight:"20px"}}>
           <Link to="/signin"><button className='btn btn-dark' style={{height:"50px"}}>sign in</button></Link>
           <Link to="/signup"><button className='btn btn-dark'style={{height:"50px"}}>sign up</button></Link>
+          <Link to="/BlogsCreate"><button className='btn btn-dark'style={{height:"50px"}}>+ create</button></Link>
         </div>
     </div>
   );

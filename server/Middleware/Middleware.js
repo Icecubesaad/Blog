@@ -9,13 +9,13 @@ const fetchDetails = async (req, res, next) => {
         req.user = verify.User_Id;
         next();
       } catch (error) {
-        res.send({ error });
+        res.json({ error });
       }
     } else {
-      res.send({ error: "Server error" });
+      res.json({ error: "Server error" });
     }
   } else {
-    res.send("Invalid error");
+    res.json("Invalid error");
   }
 };
 module.exports = fetchDetails;

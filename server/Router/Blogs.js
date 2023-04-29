@@ -1,7 +1,8 @@
 const express = require("express")
 const router = express.Router()
 const BlogsModel = require("../Model/Blogs")
-router.post("/Post",async(req,res)=>{
+const middleware = require("../Middleware/Middleware")
+router.post("/Post",middleware,async(req,res)=>{
     const Time = new Date();
     const {title,description,tags,user} = req.body;
     const Saving  = await BlogsModel.create({
