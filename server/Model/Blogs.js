@@ -17,6 +17,9 @@ const Model = new Schema({
     },
     User:{
         type:String,
+    },
+    Id:{
+        type:String
     }
 })
 const BlogsModel = mongoose.model("Blogs",Model)

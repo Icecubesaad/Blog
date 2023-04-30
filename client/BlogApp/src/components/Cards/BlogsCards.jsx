@@ -1,9 +1,16 @@
 import React from 'react';
 import Tags from './Tags';
+import {Link} from "react-router-dom"
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import AppContext from '../Function/AppContext';
+import { useContext } from 'react';
 const BlogsCards = (props) => {
+    const context = useContext(AppContext);
+    const {setBlogsId} = context;
     return (
-        <div className='GridBox'>
+        <Link to={`/blogs/${props.id}`} style={{textDecoration:"none",color:"black"}}>
+            {setBlogsId(props.Id)}
+            <div className='GridBox' >
             <div className='Utilities'>
             <div className='Tags'>
                 <Tags content={props.tags}/>
@@ -23,7 +30,7 @@ const BlogsCards = (props) => {
                     {props.date.map(e=>e.date+"/"+e.month+"/"+e.year)}
                 </div>
             </div>
-        </div>
+        </div></Link>
     );
 }
 

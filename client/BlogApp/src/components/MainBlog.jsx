@@ -15,10 +15,9 @@ const MainBlog = () => {
         const real = await data.json()
         setBlogs([...Blogs,real])
     }
-    Blogs.map(e=>e.map(y=>console.log(y)))
     return (
         <div className='Flex-Box-Cards'>
-            {Blogs.map(e=>e.map(y=><BlogsCards title={y.Title} desc={y.Description} date={y.Date} tags={y.Tags} />))}
+            {Blogs.map(e=>e.map(y=><BlogsCards title={y.Title} desc={y.Description} date={y.Date} tags={y.Tags} id={y.Id} />))}
         </div>
     );
 }

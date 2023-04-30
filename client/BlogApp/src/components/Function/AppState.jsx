@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AppContext from "./AppContext";
 const AppState = (props) => {
+    const [BlogsId, setBlogsId] = useState("");
     const [userinfo, setuserinfo] = useState({});
     const getUser = async()=>{
 
@@ -14,7 +15,7 @@ const AppState = (props) => {
       setuserinfo(parsed)
   }
   return(
-  <AppContext.Provider value={{userinfo,setuserinfo,getUser}}>
+  <AppContext.Provider value={{userinfo,setuserinfo,getUser,BlogsId,setBlogsId}}>
     {props.children}
     </AppContext.Provider>)
 };
