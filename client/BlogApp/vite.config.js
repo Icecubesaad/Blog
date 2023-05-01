@@ -13,6 +13,7 @@ export default defineConfig({
       "/api/auth/Signin":"http://localhost:3000",
       "/api/blogs/filter":"http://localhost:3000",
       "/api/blogs/Relate":"http://localhost:3000",
+      "/api/blogs/updates":"http://localhost:3000",
     },
   },
 })

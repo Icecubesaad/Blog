@@ -17,6 +17,7 @@ router.post("/Post",middleware,async(req,res)=>{
         }
         ],
         User:user,
+        Likes:0,
         Id:uuidv4()
     })
     res.send(Saving)
@@ -35,6 +36,24 @@ router.get("/Relate/:id",async(req,res)=>{
     const data = await BlogsModel.findOne({Id:id})
     const RelatableData = await BlogsModel.find({Tags:data.Tags})
     res.send(RelatableData)
+})
+router.post("/updates/:id",async(req,res)=>{
+    const {changelike} = req.body;
+    console.log(changelike)
+    if(changelike){
+        const id = req.params.id;
+        const update = { $inc: { Likes: 1 } };
+        const filter = {Id:id}
+        const options = {new:true}
+        const data =await BlogsModel.findOneAndUpdate(filter,update,options)
+    }
+    if(!changelike){
+        const id = req.params.id;
+        const update = { $inc: { Likes: -1 } };
+        const filter = {Id:id}
+        const options = {new:true}
+        const data =await BlogsModel.findOneAndUpdate(filter,update,options)
+    }
 })
 module.exports = router
 

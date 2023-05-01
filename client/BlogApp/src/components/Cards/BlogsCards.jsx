@@ -26,7 +26,7 @@ const BlogsCards = (props) => {
                 <div className='Reactions'>
                     Reaction
                 </div>
-                <div className='Date'>
+                <div className='Date' style={{fontSize:"0.9rem"}}>
                     {props.date.map(e=>e.date+"/"+e.month+"/"+e.year)}
                 </div>
             </div>
