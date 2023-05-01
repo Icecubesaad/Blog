@@ -17,7 +17,7 @@ const MainBlog = () => {
     }
     return (
         <div className='Flex-Box-Cards'>
-            {Blogs.map(e=>e.map(y=><BlogsCards title={y.Title} desc={y.Description} date={y.Date} tags={y.Tags} id={y.Id} />))}
+            {Blogs.map(e=>e.map(y=><BlogsCards title={y.Title} desc={y.Description} date={y.Date} tags={y.Tags} id={y.Id} style={{fontSize:"1.3rem"}} />))}
         </div>
     );
 }

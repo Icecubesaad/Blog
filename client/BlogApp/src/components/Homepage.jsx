@@ -10,7 +10,10 @@ const Homepage = ({children}) => {
     const context= useContext(AppContext)
     const {getUser} = context
     useEffect(() => {
-        getUser()
+        if(localStorage.getItem("key")){
+
+            getUser()
+        }
     }, []);
 
     

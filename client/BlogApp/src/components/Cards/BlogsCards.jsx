@@ -19,7 +19,7 @@ const BlogsCards = (props) => {
                 <BookmarkBorderIcon/>
             </div>
             </div>
-            <div className='Title'>
+            <div className='Title' style={props.style}>
                 {props.title}
             </div>
             <div className='Rating'>

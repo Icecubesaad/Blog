@@ -30,5 +30,11 @@ router.get("/filter/:id",async(req,res)=>{
     const data = await BlogsModel.findOne({Id:id})
     res.send(data)
 })
+router.get("/Relate/:id",async(req,res)=>{
+    const id = req.params.id;
+    const data = await BlogsModel.findOne({Id:id})
+    const RelatableData = await BlogsModel.find({Tags:data.Tags})
+    res.send(RelatableData)
+})
 module.exports = router
 
