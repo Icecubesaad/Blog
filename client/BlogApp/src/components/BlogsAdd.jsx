@@ -2,11 +2,18 @@ import React, { useContext } from 'react';
 import { useState } from 'react';
 import AppContext from './Function/AppContext';
 import { useEffect } from 'react';
+import  {useNavigate} from 'react-router-dom';
 const BlogsAdd = () => {
+    const navigate = useNavigate();
     const context = useContext(AppContext)
     const {userinfo,getUser} = context
     useEffect(() => {
-        getUser()
+        if(window.localStorage.getItem("key")){
+            getUser()
+        }
+        else{
+            navigate("/signin")
+        }
     }, []);
     const [Blogs, setBlogs] = useState({
         "title":"",
@@ -21,7 +28,6 @@ const BlogsAdd = () => {
     const Post = async()=>{
         const {title,description,cut} = Blogs
         const tags = cut.split(",")
-        console.log(tags)
         const data = await fetch("/api/blogs/Post",{
             method:"POST",
             headers:{

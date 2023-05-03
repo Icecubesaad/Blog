@@ -34,7 +34,8 @@ router.get("/filter/:id",async(req,res)=>{
 router.get("/Relate/:id",async(req,res)=>{
     const id = req.params.id;
     const data = await BlogsModel.findOne({Id:id})
-    const RelatableData = await BlogsModel.find({Tags:data.Tags})
+    const query = { Tags: { $in: data.Tags } };
+const RelatableData =await BlogsModel.find(query);
     res.send(RelatableData)
 })
 router.post("/updates/:id",async(req,res)=>{
