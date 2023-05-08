@@ -3,8 +3,8 @@ import AppContext from "./AppContext";
 const AppState = (props) => {
     const [BlogsId, setBlogsId] = useState("");
     const [userinfo, setuserinfo] = useState({});
+    const [loggedIN, setloggedIN] = useState(true);
     const getUser = async()=>{
-
       const getting = await fetch("/api/auth/Get",{
           method:"GET",
           headers:{
@@ -15,7 +15,7 @@ const AppState = (props) => {
       setuserinfo(parsed)
   }
   return(
-  <AppContext.Provider value={{userinfo,setuserinfo,getUser,BlogsId,setBlogsId}}>
+  <AppContext.Provider value={{userinfo,setuserinfo,getUser,BlogsId,setBlogsId,loggedIN,setloggedIN}}>
     {props.children}
     </AppContext.Provider>)
 };

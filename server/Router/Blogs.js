@@ -56,5 +56,50 @@ router.post("/updates/:id",async(req,res)=>{
         const data =await BlogsModel.findOneAndUpdate(filter,update,options)
     }
 })
+router.get("/hot",async(req,res)=>{
+    const date = new Date();
+    const data = await BlogsModel.find();
+    let mostLiked = {
+        Likes : 0,
+        month:0,
+    };
+    let HotPosts = [];
+    let secondLiked = {
+        Likes : 0,
+        month:0,
+    };;
+    let ThirdLiked = {
+        Likes : 0,
+        month:0,
+    };
+    data.map((e)=>{
+        if(e.Likes > mostLiked.Likes){
+            mostLiked = e;
+        }
+    })
+    data.map((e)=>{
+        if(e.Likes > secondLiked.Likes && secondLiked.Likes<mostLiked.Likes && e.Likes != mostLiked.Likes){
+            secondLiked = e;
+        }
+    })
+    data.map((e)=>{
+        if(e.Likes > ThirdLiked.Likes && ThirdLiked.Likes < secondLiked.Likes && e.Likes != mostLiked.Likes &&  e.Likes != secondLiked.Likes){
+            ThirdLiked = e;
+        }
+    })
+    mostLiked.Date.map(e=>console.log(e.month))
+    if(mostLiked.Date.some(e=>e.month === date.getMonth())){
+        HotPosts.push(mostLiked)
+    }
+    if(secondLiked.Date.some((e)=>e.month === date.getMonth())){
+
+        HotPosts.push(secondLiked)
+    }
+    if(ThirdLiked.Date.some((e)=>e.month === date.getMonth())){
+
+        HotPosts.push(ThirdLiked)
+    }
+    res.send(HotPosts)
+})
 module.exports = router
 

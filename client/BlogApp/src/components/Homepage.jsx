@@ -8,11 +8,15 @@ import AppContext from './Function/AppContext';
 
 const Homepage = ({children}) => {
     const context= useContext(AppContext)
-    const {getUser} = context
+    const {getUser,setloggedIN} = context
     useEffect(() => {
         if(localStorage.getItem("key")){
 
             getUser()
+            setloggedIN(true)
+        }
+        else{
+            setloggedIN(false)
         }
     }, []);
 
