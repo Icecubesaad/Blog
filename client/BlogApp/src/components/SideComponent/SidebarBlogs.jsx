@@ -24,7 +24,7 @@ const SidebarBlogs = () => {
     }
     return (
         <div className='sidebar-blogs' style={{width:"20%",marginRight:"30px",display:"flex",flexDirection:"column",gap:"50px"}}>
-            {state.length >=1 ? state.map(e=><BlogsCards title={e.Title} date={e.Date} tags={null} id={e.Id} style={{fontSize:"1rem"}}/>  ) : <div>loading</div>}
+            {state.length >=1 ? state.map(e=><BlogsCards title={e.Title} date={e.Date} likes={e.Likes} tags={null} id={e.Id} style={{fontSize:"1rem"}}/>  ) : <div>loading</div>}
         </div>
     );
 }

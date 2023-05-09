@@ -19,6 +19,7 @@ const BlogsAdd = () => {
         "title":"",
         "description":"",
         "cut":"",
+        "field":""
     });
     const change = (e)=>{
         const key = e.target.name;
@@ -26,7 +27,7 @@ const BlogsAdd = () => {
         setBlogs({...Blogs,[key]:value})
     }
     const Post = async()=>{
-        const {title,description,cut} = Blogs
+        const {title,description,cut,field} = Blogs
         const tags = cut.split(",")
         const data = await fetch("/api/blogs/Post",{
             method:"POST",
@@ -35,7 +36,7 @@ const BlogsAdd = () => {
                 "Content-Type":"application/json"
             },
             body:JSON.stringify({
-                title,description,tags,user:userinfo.UserName
+                title,description,tags,user:userinfo.UserName,field
             })
         })
         const parsed = await data.json()
@@ -47,6 +48,7 @@ const BlogsAdd = () => {
             <h1>Title</h1> <input name="title" onChange={change} value={Blogs.title} placeholder='Enter the title here'/>
             <h1>Tags</h1> <input name="cut" onChange={change} value={Blogs.tags} placeholder='Enter the tags here'/>
             <h1>Description</h1> <textarea id='desc' name="description" onChange={change} value={Blogs.description} placeholder='Enter the title here'/>
+            <h1>Field</h1> <textarea id='desc' name="description" onChange={change} value={Blogs.field} placeholder='Enter the title here'/>
             </div>
             <button onClick={Post} className='btn btn-dark'>Submit</button>
         </div>

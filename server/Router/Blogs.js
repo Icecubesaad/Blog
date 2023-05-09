@@ -5,7 +5,7 @@ const middleware = require("../Middleware/Middleware")
 const { v4: uuidv4 } = require('uuid');
 router.post("/Post",middleware,async(req,res)=>{
     const Time = new Date();
-    const {title,description,tags,user} = req.body;
+    const {title,description,tags,user,fields} = req.body;
     const Saving  = await BlogsModel.create({
         Title:title,
         Description:description,
@@ -18,13 +18,21 @@ router.post("/Post",middleware,async(req,res)=>{
         ],
         User:user,
         Likes:0,
-        Id:uuidv4()
+        Id:uuidv4(),
+        Type:fields
     })
     res.send(Saving)
 })
-router.get("/get",async(req,res)=>{
-    const blogs =await BlogsModel.find()
-    res.send(blogs)
+router.get("/get/:id",async(req,res)=>{
+    const id = req.params.id;
+    if(id === "undefined"){
+        const blogs =await BlogsModel.find() 
+        res.send(blogs)
+    }
+    else{
+        const blogs =await BlogsModel.find({Type:id})
+        res.send(blogs)
+    }
 })
 router.get("/filter/:id",async(req,res)=>{
     const id = req.params.id;
@@ -87,7 +95,6 @@ router.get("/hot",async(req,res)=>{
             ThirdLiked = e;
         }
     })
-    mostLiked.Date.map(e=>console.log(e.month))
     if(mostLiked.Date.some(e=>e.month === date.getMonth())){
         HotPosts.push(mostLiked)
     }

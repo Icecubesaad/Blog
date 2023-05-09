@@ -12,6 +12,9 @@ const Auth = new Schema({
     Password:{
         type:String,
         require:true
+    },
+    Liked:{
+        type:Array
     }
     
 })

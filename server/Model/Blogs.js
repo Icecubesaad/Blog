@@ -23,6 +23,9 @@ const Model = new Schema({
     },
     Likes:{
         type:Number
+    },
+    Type:{
+        type:String
     }
 })
 const BlogsModel = mongoose.model("Blogs",Model)
