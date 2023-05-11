@@ -3,15 +3,18 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import SidebarBlogs from "./SideComponent/SidebarBlogs";
+import AppContext from "./Function/AppContext";
+import { useContext } from "react";
 import Header from "./Header";
 const ShowBlogs = () => {
+  const [userinfo, setuserinfo] = useState({});
   const [checked, setchecked] = useState(false);
-
   const [ShowBlogs, setShowBlogs] = useState("");
   const [changelike, setchangelike] = useState(true);
   const [likes, setlikes] = useState();
   const { id } = useParams();
   useEffect(() => {
+    getUser();
     fetchBlog();
   }, [id]);
   const fetchBlog = async () => {
@@ -76,6 +79,21 @@ const updateUserDisLike = async()=>{
     })
   })
 }
+const getUser = async()=>{
+  const getting = await fetch("/api/auth/Get",{
+      method:"GET",
+      headers:{
+          "jwt_token":localStorage.getItem("key")
+      }
+  }) 
+  const parsed = await getting.json()
+  if(parsed.Liked.includes(id)){
+    setchangelike(false)
+  }
+  else{
+    setchangelike(true)
+  }
+}
   return (
     <>
       <Header />
@@ -86,7 +104,7 @@ const updateUserDisLike = async()=>{
         <div
           className="container-blogs"
           style={{ width: "70%", paddingLeft: "30px" }}
-        >
+          >
           <div
             className="img-blog"
             style={{ height: "300px", width: "80%", backgroundColor: "red" }}

@@ -41,8 +41,13 @@ const BlogsCards = (props) => {
                 {props.title}
             </div>
             <div className='Rating'>
+                <div style={{display:"flex",flexDirection:"row"}}>
                 <div className='Reactions'>
                 ❤️{props.likes}
+                </div>
+                <div style={{marginLeft:"30px"}}>
+                    By : {props.author}
+                </div>
                 </div>
                 <div className='Date' style={{fontSize:"0.9rem"}}>
                     {props.date.map(e=>e.date+"/"+e.month+"/"+e.year)}
