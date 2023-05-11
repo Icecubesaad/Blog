@@ -3,18 +3,18 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import SidebarBlogs from "./SideComponent/SidebarBlogs";
-import AppContext from "./Function/AppContext";
-import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 const ShowBlogs = () => {
-  const [userinfo, setuserinfo] = useState({});
-  const [checked, setchecked] = useState(false);
   const [ShowBlogs, setShowBlogs] = useState("");
   const [changelike, setchangelike] = useState(true);
   const [likes, setlikes] = useState();
   const { id } = useParams();
+  const Navigate = useNavigate()
   useEffect(() => {
-    getUser();
+    if(localStorage.getItem("key")){
+      getUser();
+    }
     fetchBlog();
   }, [id]);
   const fetchBlog = async () => {
@@ -27,22 +27,28 @@ const ShowBlogs = () => {
     setlikes(parsed.Likes);
   };
   const UpdateLike = async () => {
-    setchangelike(false);
-    setlikes((e) => e + 1);
-    updateUser(changelike);
-    const data = await fetch(`/api/blogs/updates/${id}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        changelike: true,
-      }),
-    });
+    if(localStorage.getItem("key")){
+      setchangelike(false);
+      setlikes((e) => e + 1);
+      updateUser(changelike);
+      const data = await fetch(`/api/blogs/updates/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          changelike: true,
+        }),
+      });
+    }
+    else{
+      Navigate("/signin")
+    }
   };
   
   const Dislike = async () => {
-    setchangelike(true)
+    if(localStorage.getItem("key")){
+      setchangelike(true)
     updateUserDisLike()
     setlikes((e) => e - 1);
     const data = await fetch(`/api/blogs/updates/${id}`, {
@@ -54,6 +60,11 @@ const ShowBlogs = () => {
         changelike: false,
       }),
     });
+    }
+    else{
+      Navigate("/signin")
+    }
+    
   };
   const updateUser = async()=>{
     const User_side = await fetch(`/api/auth/likes/${id}`,{
@@ -99,7 +110,7 @@ const getUser = async()=>{
       <Header />
       <div
         className="container-Show"
-        style={{ display: "flex", flexDirection: "row", paddingTop: "50px" }}
+        style={{ display: "flex", flexDirection: "row", paddingTop: "50px", backgroundColor:"black", color:"#f8f8f8" }}
       >
         <div
           className="container-blogs"

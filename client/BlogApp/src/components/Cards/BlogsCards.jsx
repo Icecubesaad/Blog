@@ -10,26 +10,26 @@ const BlogsCards = (props) => {
     const {id} = useParams()
     const location = useLocation()
     const [style, setstyle] = useState({
-        border:"2px solid black",borderRadius:"11px",backgroundColor:"white"
+        border:"2px solid white",borderRadius:"11px",backgroundColor:"black"
     });
     const changeStyle = ()=>{
         if(location.pathname === `/blogs/${id}`){
             setstyle({
-                border:"2px solid black",borderRadius:"11px",backgroundColor:"#bdbdbd"
+                border:"2px solid white",borderRadius:"11px",backgroundColor:"#bdbdbd", transition:"all 300ms", color:"black"
             })
         }
     }
     const changeagain = ()=>{
         if(location.pathname === `/blogs/${id}`){
             setstyle({
-                border:"2px solid black",borderRadius:"11px",backgroundColor:"white"
+                border:"2px solid white",borderRadius:"11px",backgroundColor:"black",transition:"all 300ms",color:"white"
             })
         }
     }
     const context = useContext(AppContext);
     const {setBlogsId} = context;
     return (
-        <Link to={`/blogs/${props.id}`} style={{textDecoration:"none",color:"black"}}>
+        <Link to={`/blogs/${props.id}`} style={{textDecoration:"none",color:"#f8f8f8"}}>
             {setBlogsId(props.Id)}
             <div className='GridBox' onMouseEnter={changeStyle} onMouseLeave={changeagain} style={style}>
             <div className='Utilities'>

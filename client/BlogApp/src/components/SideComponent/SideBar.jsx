@@ -36,6 +36,8 @@ const SideBar = () => {
     gap: "10px",
     transition: "all 300ms",
     overflow: "hidden",
+    borderLeft:"2px  solid white",
+    borderRight:"2px  solid white",
   });
 
   const [listStyles, setListStyles] = useState(
@@ -73,7 +75,8 @@ const SideBar = () => {
           display: "flex",
           gap: "20px",
           transition: "all 300ms",
-          
+          borderLeft:"2px  solid white",
+          borderRight:"2px  solid white",
         })
         setstylepara({
             display:"inline-block",
@@ -102,6 +105,8 @@ const SideBar = () => {
           display: "flex",
           gap: "20px",
           transition: "all 300ms",
+          borderLeft:"2px  solid white",
+    borderRight:"2px  solid white",
         })
         setstylepara({
             display:"none"

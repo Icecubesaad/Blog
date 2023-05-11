@@ -32,16 +32,35 @@ export default function Auth() {
         "transition": "all 1s"
     });
     const flip = () => {
-        setstyle({
-            "transform": "scaleX(1)",
-            "transition": "all 1s"
-        })
+        if(location.pathname === "/signin"){
+
+            setstyle({
+                "transform": "scaleX(-1)",
+                "transition": "all 1s"
+            })
+        }
+        else{
+            setstyle({
+                "transform": "scaleX(1)",
+                "transition": "all 1s"
+            })
+        }
     }
     const flip2 = () => {
-        setstyle({
-            "transform": "scaleX(-1)",
-            "transition": "all 1s"
-        })
+
+        if(location.pathname === "/signin"){
+
+            setstyle({
+                "transform": "scaleX(1)",
+                "transition": "all 1s"
+            })
+        }
+        else{
+            setstyle({
+                "transform": "scaleX(-1)",
+                "transition": "all 1s"
+            })
+        }
     }
     //SIGN IN PORT
    

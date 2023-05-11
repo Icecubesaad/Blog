@@ -6,8 +6,8 @@ const SignedINn = () => {
     const context = useContext(AppContext);
     const {userinfo} = context;
     return (
-        <div className='flex-header' style={{display:"flex"}}>
-            <div>{userinfo.UserName}</div>
+        <div className='flex-header' style={{display:"flex",alignItems:"center"}}>
+            <div style={{marginRight:"20px"}}>{userinfo.UserName}</div>
             <div>profile</div>
         </div>
     );
