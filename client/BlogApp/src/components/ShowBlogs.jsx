@@ -72,7 +72,7 @@ const updateUserDisLike = async()=>{
     method:"POST",
     headers:{
       "jwt_token" : localStorage.getItem("key"),
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
     body:JSON.stringify({
       option:false
