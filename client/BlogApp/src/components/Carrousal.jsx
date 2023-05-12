@@ -3,13 +3,18 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import AOS from 'aos';
 import Fade from 'react-reveal/Fade'
+import {Link} from "react-router-dom"
 import 'aos/dist/aos.css'; // You can also use <link> for styles
+import image_1 from "../components/images/TOP 5 PLACES TO VISIT IN 2023.png"
+import image_2 from "../components/images/TOP 5 PLACES TO VISIT IN 2023 (1).png"
+import image_3 from "../components/images/TOP 5 PLACES TO VISIT IN 2023 (2).png"
+import image_4 from "../components/images/TOP 5 PLACES TO VISIT IN 2023 (4).png"
 
 const Carrousal = () => {
     AOS.init()
     const [Value, setValue] = useState(0);
     setTimeout(() => {
-        if(Value===2){
+        if(Value===3){
             console.log("0")
             setValue(0)
             AOS.refresh();
@@ -18,25 +23,30 @@ const Carrousal = () => {
             setValue(Value+1)
             AOS.refresh();
         }
-    }, 4000);
+    }, 5000);
 
     const pics = [{
-        "img":"https://cdn.shopify.com/s/files/1/0603/6412/8462/articles/New-HD-Good-Night-Images-Pics-and-Wishes-2023-viraasi.jpg?v=1673265693"
+        "img":image_1
     },
     {
-        "img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS21P_8KKvTefCFaPLUtu1KVZmvMayWgRg9vA&usqp=CAU"
+        "img":image_2
     },
     {
-        "img":"https://whatson.ae/wp-content/uploads/2023/02/pics-of-the-week-feature.gif"
-    }]
+        "img":image_3
+    },
+{
+    "img":image_4
+}]
     return (
-        <div style={{height:"500px",width:"100%"}}>
+        <Link to="/signin">
+        <div style={{height:"600px",width:"100%"}}>
             {
                 <div key={Value} data-aos="fade-left">
-                <img  src={pics[Value].img} width="100%" height="500px"/>
+                <img  src={pics[Value].img} width="100%" height="600px"/>
                 </div>
             }
         </div>
+        </Link>
     );
 }
 

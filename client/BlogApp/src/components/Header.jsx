@@ -7,6 +7,27 @@ import { useContext } from 'react';
 import { useState } from 'react';
 import Popup from './popup';
 const Header = () => {
+  const [style, setstyle] = useState({
+    style:{
+      height:"50px",backgroundColor:"black",border:"2px solid white", color:"white", borderRadius:"7px", width:"100px",transition:"all 300ms"
+    }
+  });
+  const change= ()=>{
+    setstyle({
+        style:{
+            height:"50px",backgroundColor:"white",border:"2px solid white", color:"black", borderRadius:"7px", width:"100px",transition:"all 300ms"
+        }
+    },{
+
+    })
+}
+const changeAgain = ()=>{
+    setstyle({
+        style:{
+            height:"50px",backgroundColor:"black",border:"2px solid white", color:"white", borderRadius:"7px", width:"100px",transition:"all 300ms"
+        }
+    })
+}
   const context = useContext(AppContext);
   const {loggedIN} = context;
   const [searchVisible, setSearchVisible] = useState(false);
@@ -26,10 +47,10 @@ const Header = () => {
         <input style={{width:"200px"}} class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
         </div>
         </div>
-        <div className='Btn-Auth' style={{display:"flex",gap:"50px",alignSelf:"center",paddingRight:"20px"}}>
+        <div className='Btn-Auth' style={{display:"flex",gap:"30px",alignSelf:"center",paddingRight:"20px"}}>
           { !loggedIN ?  <NotSignedIn/> :
           <SignedINn/> }
-          <Link to="/BlogsCreate"><button className='btn btn-dark'style={{height:"50px"}}>+ create</button></Link>
+          <Link to="/BlogsCreate"><button onMouseOver={change} onMouseLeave={changeAgain} style={style.style}>+ create</button></Link>
         </div>
         {searchVisible ? <Popup closeSearchBox={closeSearchBox} /> : null}
     </div>

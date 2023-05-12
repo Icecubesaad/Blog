@@ -8,7 +8,7 @@ const SignedINn = () => {
     return (
         <div className='flex-header' style={{display:"flex",alignItems:"center"}}>
             <div style={{marginRight:"20px"}}>{userinfo.UserName}</div>
-            <div>profile</div>
+            <div style={{width:"50px",height:"50px", backgroundColor:"grey", borderRadius:"50%"}}></div>
         </div>
     );
 }
