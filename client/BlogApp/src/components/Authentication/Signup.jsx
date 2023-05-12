@@ -1,6 +1,21 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState,useRef } from 'react';
 const Signup = (props) => {
+  const [imageFile, setimage] = useState();
+  const fileInputRef = useRef(null);
+
+  const handleSelectFile =() => {
+    fileInputRef.current.click();
+    console.log(imageFile)
+  };
+  const handleFileInputChange = async (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload=()=>{
+      setimage(reader.result)
+    };
+  };
   const [SignUpCredentials,setSignUpCredentials] = useState({
     "email":"",
     "password":"",
@@ -21,7 +36,7 @@ const Signup = (props) => {
 
       },
       body:JSON.stringify({
-        name,email,password
+        name,email,password,image:imageFile
       })
     })
     const parsed =await data.json()
@@ -42,6 +57,18 @@ const Signup = (props) => {
         <div class="input-box">
           <i class="fas fa-lock"></i>
           <input type="password" name='password' onChange={ONchange} value={SignUpCredentials.password} placeholder="Enter your password" required />
+        </div>
+        <div class="input-box">
+          <i class="fas fa-lock"></i>
+          <button className="select-file-btn" style={{height:"50px",marginRight:"20px",backgroundColor:"white",border:"2px solid black", color:"black", borderRadius:"7px", width:"150px",transition:"all 300ms"}} onClick={handleSelectFile}>
+            Select File
+          </button>
+          <input
+            type="file"
+            ref={fileInputRef}
+            className="file-input"
+            onChange={handleFileInputChange}
+          />
         </div>
         <div class="button input-box" onClick={Register}>
           <input style={{textAlign:"center"}} value="Signup"/>

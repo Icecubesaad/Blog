@@ -15,7 +15,10 @@ const Auth = new Schema({
     },
     Liked:{
         type:Array
-    }
+    },
+    Image: {
+        type: String,
+      },
     
 })
 const AuthModel = mongoose.model("User",Auth)

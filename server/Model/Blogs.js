@@ -26,6 +26,9 @@ const Model = new Schema({
     },
     Type:{
         type:String
+    },
+    Image:{
+        type:String
     }
 })
 const BlogsModel = mongoose.model("Blogs",Model)
