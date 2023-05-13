@@ -92,14 +92,6 @@ router.post("/likes/:id", middleware, async (req, res) => {
   const user_ID = req.user.ID;
   const Blog_id = req.params.id;
   const { option } = req.body;
-  console.log(
-    "options : ",
-    option,
-    " Blog ID : ",
-    Blog_id,
-    " User Id : ",
-    user_ID
-  );
   const userData = await UserModel.findOne({ _id: user_ID });
   if (!userData) {
     return res.status(404).send("User not found");
@@ -117,7 +109,6 @@ router.post("/likes/:id", middleware, async (req, res) => {
               );
             } catch (error) {
               res.send.json(error);
-              console.log(error);
             }
       }
       }
@@ -130,7 +121,6 @@ router.post("/likes/:id", middleware, async (req, res) => {
             );
           } catch (error) {
             res.send.json(error);
-            console.log(error);
           }
     }
   }

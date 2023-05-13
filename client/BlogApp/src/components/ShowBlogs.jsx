@@ -5,7 +5,9 @@ import { useState } from "react";
 import SidebarBlogs from "./SideComponent/SidebarBlogs";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
+import Spinner from "./spinner/spinner";
 const ShowBlogs = () => {
+  const [loading, setloading] = useState(true);
   const [ShowBlogs, setShowBlogs] = useState("");
   const [changelike, setchangelike] = useState(true);
   const [likes, setlikes] = useState();
@@ -97,6 +99,11 @@ const getUser = async()=>{
           "jwt_token":localStorage.getItem("key")
       }
   }) 
+  if(getting.status === 200){
+    setTimeout(() => {
+      setloading(false)
+    }, 300);
+  }
   const parsed = await getting.json()
   if(parsed.Liked.includes(id)){
     setchangelike(false)
@@ -107,7 +114,7 @@ const getUser = async()=>{
 }
   return (
     <>
-      <Header />
+     {  loading ? <div style={{display:"flex",alignItems:"center",justifyContent:"center",backgroundColor:"black",height:"100vh", width:"100%"}}><Spinner/></div> : <> <Header />
       <div
         className="container-Show"
         style={{ display: "flex", flexDirection: "row", paddingTop: "50px", backgroundColor:"black", color:"#f8f8f8" }}
@@ -116,10 +123,7 @@ const getUser = async()=>{
           className="container-blogs"
           style={{ width: "70%", paddingLeft: "30px" }}
           >
-          <div
-            className="img-blog"
-            style={{ height: "300px", width: "80%", backgroundColor: "red" }}
-          ></div>
+         { !ShowBlogs.Image ? <Spinner/> : <img src={ShowBlogs.Image} style={{ height: "300px", width: "auto", backgroundColor: "red" }}  /> }
           <div
             style={{
               display: "flex",
@@ -530,6 +534,7 @@ const getUser = async()=>{
         </div>
         <SidebarBlogs />
       </div>
+      </>}
     </>
   );
 };

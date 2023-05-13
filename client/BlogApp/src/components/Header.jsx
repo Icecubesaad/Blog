@@ -32,7 +32,6 @@ const changeAgain = ()=>{
   const {loggedIN} = context;
   const [searchVisible, setSearchVisible] = useState(false);
   const toggleSearch = () => {
-    console.log("Hekki")
     setSearchVisible(true);
   };
   const closeSearchBox = () => {
