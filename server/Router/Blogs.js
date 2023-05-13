@@ -5,7 +5,7 @@ const middleware = require("../Middleware/Middleware")
 const { v4: uuidv4 } = require('uuid');
 router.post("/Post",middleware,async(req,res)=>{
     const Time = new Date();
-    const {title,description,tags,user,fields} = req.body;
+    const {title,description,tags,user,fields,image} = req.body;
     const Saving  = await BlogsModel.create({
         Title:title,
         Description:description,
@@ -19,7 +19,8 @@ router.post("/Post",middleware,async(req,res)=>{
         User:user,
         Likes:0,
         Id:uuidv4(),
-        Type:fields
+        Type:fields,
+        Image:image
     })
     res.send(Saving)
 })
@@ -48,7 +49,6 @@ const RelatableData =await BlogsModel.find(query);
 })
 router.post("/updates/:id",async(req,res)=>{
     const {changelike} = req.body;
-    console.log(changelike)
     if(changelike){
         const id = req.params.id;
         const update = { $inc: { Likes: 1 } };
