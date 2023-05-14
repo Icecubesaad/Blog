@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { useState } from 'react';
-import AppContext from './Function/AppContext';
+import AppContext from '../Function/AppContext';
 import { useEffect } from 'react';
 import  {useNavigate} from 'react-router-dom';
 import { useRef } from 'react';
-import Error from './errors/error';
-import Spinner from './spinner/spinner';
+import Error from '../Alert/error';
+import Spinner from '../spinner/Spinner';
 const BlogsAdd = () => {
     const [option, setoption] = useState(false);
     const searchBoxRef = useRef(null);

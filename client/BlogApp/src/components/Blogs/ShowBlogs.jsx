@@ -2,10 +2,10 @@ import React from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import SidebarBlogs from "./SideComponent/SidebarBlogs";
+import SidebarBlogs from "../SideComponent/SidebarBlogs";
 import { useNavigate } from "react-router-dom";
-import Header from "./Header";
-import Spinner from "./spinner/spinner";
+import Header from "../Header";
+import Spinner from "../spinner/Spinner";
 const ShowBlogs = () => {
   const [loading, setloading] = useState(true);
   const [ShowBlogs, setShowBlogs] = useState("");
@@ -123,7 +123,7 @@ const getUser = async()=>{
           className="container-blogs"
           style={{ width: "70%", paddingLeft: "30px" }}
           >
-         { !ShowBlogs.Image ? <Spinner/> : <img src={ShowBlogs.Image} style={{ height: "300px", width: "auto", backgroundColor: "red" }}  /> }
+         { !ShowBlogs.Image ? <Spinner/> : <img src={ShowBlogs.Image} style={{ height: "355px", width: "748px", backgroundColor: "red" }}  /> }
           <div
             style={{
               display: "flex",

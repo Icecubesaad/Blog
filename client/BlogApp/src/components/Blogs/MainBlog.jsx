@@ -1,5 +1,5 @@
 import React from 'react';
-import BlogsCards from './Cards/BlogsCards';
+import BlogsCards from '../Cards/BlogsCards';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { useState } from 'react';

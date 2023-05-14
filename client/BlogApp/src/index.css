@@ -935,6 +935,34 @@ svg #main-circ {
   animation: rotationBack 0.5s linear infinite;
   transform-origin: center center;
 }
+.loader2 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  border: 3px solid;
+  border-color: black black transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loader2::after {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 3px solid;
+  border-color: transparent black black;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  animation: rotationBack 0.5s linear infinite;
+  transform-origin: center center;
+}
 
 @keyframes rotation {
   0% {
@@ -952,5 +980,18 @@ svg #main-circ {
   100% {
     transform: rotate(-360deg);
   }
+}
+.button-signup{
+  color: #fff;
+  background: black;
+  border-radius: 6px;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  text-align: center;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
     

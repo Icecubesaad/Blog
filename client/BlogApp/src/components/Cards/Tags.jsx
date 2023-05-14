@@ -4,7 +4,7 @@ import { useState } from 'react';
 const Tags = (props) => {
     const [style, setstyle] = useState({
         0:{
-            backgroundColor : "red",
+            backgroundColor : "#FF7F50",
             border:"none",
             borderRadius:"7px",
             width:"auto",
@@ -14,10 +14,11 @@ const Tags = (props) => {
             height:"40px",
             display:"flex",
             alignItems:"center",
-            justifyContent : "center"
+            justifyContent : "center",
+            color:"black"
         },
         1:{
-            backgroundColor : "orange",
+            backgroundColor : "#87CEEB",
             border:"none",
             borderRadius:"7px",
             width:"auto",
@@ -27,10 +28,11 @@ const Tags = (props) => {
             height:"40px",
             display:"flex",
             alignItems:"center",
-            justifyContent : "center"
+            justifyContent : "center",
+            color:"black"
         },
         2:{
-            backgroundColor:"green",
+            backgroundColor:"#FF7F50",
             border:"none",
             borderRadius:"7px",
             width:"auto",
@@ -40,7 +42,8 @@ const Tags = (props) => {
             height:"40px",
             display:"flex",
             alignItems:"center",
-            justifyContent : "center"
+            justifyContent : "center",
+            color:"black"
         }
     });
     return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-import Carrousal from './Carrousal';
+import Carrousal from './SideComponent/Carrousal';
 import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';

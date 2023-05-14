@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom'
+import Spinner2 from '../spinner/spinner2';
+import Error from '../Alert/error';
 const Signin = (props) => {
+  const [message, setmessage] = useState("");
+  const [loading, setloading] = useState("");
+  const [error, seterror] = useState("");
   const location = useNavigate()
   const [SignInCredentials,setSignInCredentials] = useState({
     "email":"",
     "password":""
   });
   const ONchange = (e)=>{
+    seterror(false)
     const name = e.target.name;
     const value  = e.target.value;
     setSignInCredentials({...SignInCredentials,[name]:value})
   }
   const Login = async()=>{
+    setloading(true)
     const {email,password} = SignInCredentials
     const data = await fetch("/api/auth/Signin",{
         method:"POST",
@@ -24,13 +31,19 @@ const Signin = (props) => {
     })
     const paresed = await data.json()
     if(data.status === 200){
-      location("/")
-      try {
-        console.log("Set item to local storage")
-        localStorage.setItem('key',paresed)
-      } catch (error) {
-        console.log({"errors":"Cannot set it"})
-      }
+      setTimeout(() => {  
+        location("/")
+        try {
+          localStorage.setItem('key',paresed)
+        } catch (error) {
+          console.log({"errors":"Cannot set it"})
+        }
+      }, 1000);
+    }
+    else{
+      setloading(false)
+      setmessage("Invalid Credentials")
+      seterror(true)
     }
 }
   return (
@@ -45,6 +58,8 @@ const Signin = (props) => {
           <i class="fas fa-lock"></i>
           <input type="password" name='password'  value={SignInCredentials.password} onChange={ONchange} placeholder="Enter your password" required />
         </div>
+        <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>{ error ?  <Error message={message}/> : null}</div>
+      {loading ? <div style={{display:"flex",justifyContent:"center",alignItems:"center",marginBottom:"10px"}}><Spinner2/></div> : null}
         <div class="text"><a href="#">Forgot password?</a></div>
         <div class="button input-box" onClick={Login}>
           <input type="submit" value="Sumbit" />

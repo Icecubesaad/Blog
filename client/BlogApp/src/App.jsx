@@ -1,4 +1,4 @@
-import Blogs from "./components/Blogs";
+import Blogs from "./components/Blogs/Blogs";
 import {
   Route,
   Routes,
@@ -9,8 +9,8 @@ import Homepage from "./components/Homepage";
 import Signin from "./components/Authentication/Signin";
 import Signup from "./components/Authentication/Signup";
 import Auth from "./components/Auth";
-import BlogsAdd from "./components/BlogsAdd";
-import ShowBlogs from "./components/ShowBlogs";
+import BlogsAdd from "./components/Blogs/BlogsAdd";
+import ShowBlogs from "./components/Blogs/ShowBlogs";
 function App() {
   return (
     <AppState>

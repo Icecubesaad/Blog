@@ -1,6 +1,9 @@
 import { useState } from "react";
 import AppContext from "./AppContext";
 const AppState = (props) => {
+    const [loadingStyle, setloadingStyle] = useState({
+        
+    });
     const [BlogsId, setBlogsId] = useState("");
     const [userinfo, setuserinfo] = useState({});
     const [loggedIN, setloggedIN] = useState(true);

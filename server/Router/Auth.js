@@ -14,7 +14,7 @@ router.post(
     body("name").isLength({ min: 5 }),
   ],
   async (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, email, password,image } = req.body;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       const emailErrors = errors.array({
@@ -41,12 +41,12 @@ router.post(
     }
     try {
       const already_exist = await UserModel.findOne({ Email: email });
-      const User_replica = await UserModel.findOne({ Username: name });
+      const User_replica = await UserModel.findOne({ UserName: name });
       if (already_exist) {
-        res.send({ error: "User already exists" });
+        res.status(404).json({ error: "User already exists" });
       } else {
         if (User_replica) {
-          res.send({ error: "Username is already taken" });
+          res.status(404).json({ error: "Username is already taken" });
         } else {
           const salt = await bcrypt.genSalt(10);
           const parsedPass = await bcrypt.hash(password, salt);
@@ -54,12 +54,13 @@ router.post(
             Email: email,
             Password: parsedPass,
             UserName: name,
+            Image:image
           });
           res.send(Saving);
         }
       }
     } catch (error) {
-      res.send({ error });
+      res.status(404).json({ error:"Internal server occured" });
     }
   }
 );
@@ -79,7 +80,7 @@ router.post("/Signin", async (req, res) => {
       const Token = await jwt.sign(User, jwt_secret);
       res.json(Token);
     } else {
-      res.send({ error: "invalid credidential" });
+      res.status(404).json({ error: "invalid credidential" });
     }
   }
 });

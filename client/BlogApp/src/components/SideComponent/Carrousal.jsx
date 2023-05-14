@@ -5,10 +5,10 @@ import AOS from "aos";
 import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
 import "aos/dist/aos.css"; // You can also use <link> for styles
-import image_1 from "../components/images/TOP 5 PLACES TO VISIT IN 2023.png";
-import image_2 from "../components/images/TOP 5 PLACES TO VISIT IN 2023 (1).png";
-import image_3 from "../components/images/TOP 5 PLACES TO VISIT IN 2023 (2).png";
-import image_4 from "../components/images/TOP 5 PLACES TO VISIT IN 2023 (4).png";
+import image_1 from "../images/TOP 5 PLACES TO VISIT IN 2023.png";
+import image_2 from "../images/TOP 5 PLACES TO VISIT IN 2023 (1).png";
+import image_3 from "../images/TOP 5 PLACES TO VISIT IN 2023 (2).png";
+import image_4 from "../images/TOP 5 PLACES TO VISIT IN 2023 (4).png";
 
 const Carrousal = () => {
   AOS.init();

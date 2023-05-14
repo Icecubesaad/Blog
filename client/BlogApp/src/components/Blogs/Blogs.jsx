@@ -1,5 +1,5 @@
 import React from 'react';
-import SideBar from './SideComponent/SideBar';
+import SideBar from '../SideComponent/SideBar';
 import MainBlog from './MainBlog';
 
 const Blogs = () => {
