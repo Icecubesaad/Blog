@@ -4,15 +4,19 @@ import { useEffect } from 'react';
 import { useContext } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import AppContext from '../Function/AppContext';
 const MainBlog = () => {
+    const context = useContext(AppContext)
+    const {setBlogsFetch} = context
     const {id} = useParams();
     const [Blogs, setBlogs] = useState([]);
     const FetchBlogs = async()=>{
         const data = await fetch(`/api/blogs/get/${id}`,{
             method:"GET",
         })
-        const real = await data.json()
-        setBlogs([real])
+        const parsedData = await data.json()
+        setBlogs([parsedData])
+        setBlogsFetch(parsedData)
     }
     useEffect(() => {
         FetchBlogs()

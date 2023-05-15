@@ -865,12 +865,33 @@ svg #main-circ {
 .search-box-content {
   background-color: #fff;
   border-radius: 8px;
-  width: 80%;
+  width: 62%;
   height: 80%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
-
+.options{
+  display: flex;
+flex-direction: column;
+width: 85%;
+gap: 20px;
+height: auto;
+background: gray;
+color: white;
+border: none;
+padding-bottom: 11px;
+position: relative;
+top: -12px;
+border-bottom-left-radius: 11px;
+border-bottom-right-radius: 11px;
+}
+.search{
+  width: 85%;
+}
+.search input{
+  width: 100%;
+}
 .search-box form {
   display: flex;
   flex-direction: column;
@@ -879,7 +900,6 @@ svg #main-circ {
 .search-box input[type="text"] {
   border: none;
   padding: 0.5rem;
-  width: 80%;
   margin-bottom: 1rem;
 }
 

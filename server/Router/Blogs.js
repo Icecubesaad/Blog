@@ -5,7 +5,7 @@ const middleware = require("../Middleware/Middleware")
 const { v4: uuidv4 } = require('uuid');
 router.post("/Post",middleware,async(req,res)=>{
     const Time = new Date();
-    const {title,description,tags,user,fields,image} = req.body;
+    const {title,description,tags,user,field,image} = req.body;
     const Saving  = await BlogsModel.create({
         Title:title,
         Description:description,
@@ -19,7 +19,7 @@ router.post("/Post",middleware,async(req,res)=>{
         User:user,
         Likes:0,
         Id:uuidv4(),
-        Type:fields,
+        Type:field,
         Image:image
     })
     res.send(Saving)
@@ -81,17 +81,17 @@ router.get("/hot",async(req,res)=>{
         month:0,
     };
     data.map((e)=>{
-        if(e.Likes > mostLiked.Likes){
+        if(e.Likes >= mostLiked.Likes){
             mostLiked = e;
         }
     })
     data.map((e)=>{
-        if(e.Likes > secondLiked.Likes && secondLiked.Likes<mostLiked.Likes && e.Likes != mostLiked.Likes){
+        if(e.Likes >= secondLiked.Likes && secondLiked.Likes<mostLiked.Likes && (e.Likes != mostLiked.Likes || e.Likes<=mostLiked.Likes)){
             secondLiked = e;
         }
     })
     data.map((e)=>{
-        if(e.Likes > ThirdLiked.Likes && ThirdLiked.Likes < secondLiked.Likes && e.Likes != mostLiked.Likes &&  e.Likes != secondLiked.Likes){
+        if(e.Likes >= ThirdLiked.Likes && ThirdLiked.Likes < secondLiked.Likes && e.Likes != mostLiked.Likes &&  (e.Likes != secondLiked.Likes || e.Likes <= secondLiked.Likes)){
             ThirdLiked = e;
         }
     })
@@ -106,7 +106,7 @@ router.get("/hot",async(req,res)=>{
 
         HotPosts.push(ThirdLiked)
     }
-    res.send(HotPosts)
+    res.json(HotPosts)
 })
 module.exports = router
 

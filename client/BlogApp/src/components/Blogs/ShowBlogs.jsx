@@ -19,6 +19,7 @@ const ShowBlogs = () => {
     }
     fetchBlog();
   }, [id]);
+  
   const fetchBlog = async () => {
     
     const data = await fetch(`/api/blogs/filter/${id}`, {

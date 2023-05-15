@@ -1,10 +1,9 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import AOS from "aos";
-import Fade from "react-reveal/Fade";
+import "aos/dist/aos.css";
 import { Link } from "react-router-dom";
-import "aos/dist/aos.css"; // You can also use <link> for styles
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import image_1 from "../images/TOP 5 PLACES TO VISIT IN 2023.png";
 import image_2 from "../images/TOP 5 PLACES TO VISIT IN 2023 (1).png";
 import image_3 from "../images/TOP 5 PLACES TO VISIT IN 2023 (2).png";
@@ -12,17 +11,8 @@ import image_4 from "../images/TOP 5 PLACES TO VISIT IN 2023 (4).png";
 
 const Carrousal = () => {
   AOS.init();
-  const [Value, setValue] = useState(0);
-  setTimeout(() => {
-    if (Value === 3) {
-      console.log("0");
-      setValue(0);
-      AOS.refresh();
-    } else {
-      setValue(Value + 1);
-      AOS.refresh();
-    }
-  }, 5000);
+
+  const [value, setValue] = useState(0);
 
   const pics = [
     {
@@ -42,16 +32,35 @@ const Carrousal = () => {
       id: "473e376e-5c00-4b82-9f43-c6464bad7a38",
     },
   ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setValue((value) => (value === pics.length - 1 ? 0 : value + 1));
+      AOS.refresh();
+    }, 7000);
+    return () => clearInterval(interval);
+  }, [pics.length]);
+
+  const forward = () => {
+    setValue((value) => (value === pics.length - 1 ? 0 : value + 1));
+    AOS.refresh();
+  };
+
+  const backward = () => {
+    setValue((value) => (value === 0 ? pics.length - 1 : value - 1));
+    AOS.refresh();
+  };
+
   return (
-    <Link to={`/blogs/${pics[Value].id}`}>
-      <div style={{ height: "600px", width: "100%" }}>
-        {
-          <div key={Value} data-aos="fade-left">
-            <img src={pics[Value].img} width="100%" height="600px" />
-          </div>
-        }
-      </div>
-    </Link>
+    <div style={{ height: "600px", backgroundColor: "black", width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <button onClick={backward} style={{ backgroundColor: "transparent", border: "none", color: "white", fontSize: "1.3rem", marginRight: "20px", zIndex: "9999" }}><ArrowBackIosIcon /></button>
+      <Link to={`/blogs/${pics[value].id}`} style={{ width: "88%" }}>
+        <div key={value} data-aos="fade-left" style={{ width: "100%" }}>
+          <img src={pics[value].img} alt={`Slide ${value + 1}`} width="100%" height="600px" />
+        </div>
+      </Link>
+      <button onClick={forward} style={{ backgroundColor: "transparent", textDecoration: "none", border: "none", color: "white", fontSize: "1.3rem", marginLeft: "20px", zIndex: "9999" }}><ArrowForwardIosIcon /></button>
+    </div>
   );
 };
 

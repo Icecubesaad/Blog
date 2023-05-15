@@ -15,6 +15,7 @@ export default defineConfig({
       "/api/blogs/filter":"http://localhost:3000",
       "/api/blogs/Relate":"http://localhost:3000",
       "/api/blogs/updates":"http://localhost:3000",
+      "/api/blogs/hot":"http://localhost:3000",
     },
   },
 })
