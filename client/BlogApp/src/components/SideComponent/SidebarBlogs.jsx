@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import BlogsCards from '../Cards/BlogsCards';
-import Spinner from '../spinner/Spinner';
+import Spinner from '../spinner/BigSpinner';
 const SidebarBlogs = () => {
     const [state, setstate] = useState([]);
     const {id} = useParams()

@@ -5,7 +5,7 @@ import { useState } from "react";
 import SidebarBlogs from "../SideComponent/SidebarBlogs";
 import { useNavigate } from "react-router-dom";
 import Header from "../Header";
-import Spinner from "../spinner/Spinner";
+import Spinner from "../spinner/BigSpinner";
 const ShowBlogs = () => {
   const [loading, setloading] = useState(true);
   const [ShowBlogs, setShowBlogs] = useState("");
@@ -25,6 +25,11 @@ const ShowBlogs = () => {
     const data = await fetch(`/api/blogs/filter/${id}`, {
       method: "GET",
     });
+    if(data.status === 200){
+      setTimeout(() => {
+        setloading(false)
+      }, 700);
+    }
     const parsed = await data.json();
     setShowBlogs(parsed);
     setlikes(parsed.Likes);
