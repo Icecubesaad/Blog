@@ -11,7 +11,6 @@ const Homepage = ({children}) => {
     const {getUser,setloggedIN} = context
     useEffect(() => {
         if(localStorage.getItem("key")){
-
             getUser()
             setloggedIN(true)
         }
