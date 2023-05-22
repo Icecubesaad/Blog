@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState,useRef } from 'react';
 import Spinner from '../spinner/Spinner';
-import Error from '../Alert/error';
-import Spinner2 from '../spinner/spinner2';
+import Error from '../Alert/Error';
+import Spinner2 from '../spinner/Spinner2';
 import Success from '../Alert/Success';
 const Signup = (props) => {
   const [success, setsuccess] = useState(false);

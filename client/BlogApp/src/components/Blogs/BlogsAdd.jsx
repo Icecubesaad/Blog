@@ -4,7 +4,7 @@ import AppContext from '../Function/AppContext';
 import { useEffect } from 'react';
 import  {useNavigate} from 'react-router-dom';
 import { useRef } from 'react';
-import Error from '../Alert/error';
+import Error from '../Alert/Error';
 import Spinner from '../spinner/Spinner';
 const BlogsAdd = () => {
     const [option, setoption] = useState(false);
