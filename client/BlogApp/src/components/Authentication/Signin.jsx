@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom'
 import Spinner2 from '../spinner/Spinner2';
-import Error from '../Alert/error';
+import Error from '../Alert/Error';
 const Signin = (props) => {
   const [message, setmessage] = useState("");
   const [loading, setloading] = useState("");
