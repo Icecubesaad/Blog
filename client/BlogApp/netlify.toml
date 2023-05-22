@@ -2,4 +2,4 @@
   command = "npm run build"
 
 [dev]
-  command = "nodemon ./App.js"
+  command = "cd server && nodemon ./App.js"
