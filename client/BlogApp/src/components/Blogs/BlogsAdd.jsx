@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import  {useNavigate} from 'react-router-dom';
 import { useRef } from 'react';
 import Error from '../Alert/Error';
-import Spinner from '../spinner/Spinner';
+import Spinner from "../spinner/BigSpinner";
 const BlogsAdd = () => {
     const [option, setoption] = useState(false);
     const searchBoxRef = useRef(null);
