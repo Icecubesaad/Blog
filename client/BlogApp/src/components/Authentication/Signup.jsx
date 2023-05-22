@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState,useRef } from 'react';
-import Spinner from '../spinner/Spinner';
 import Error from '../Alert/Error';
 import Spinner2 from '../spinner/Spinner2';
 import Success from '../Alert/Success';
