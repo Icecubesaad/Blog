@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "cd blog/server && npm run build"
 
 [dev]
-  command = "cd server && nodemon ./App.js"
+  command = "cd blog/server && nodemon ./App.js"
