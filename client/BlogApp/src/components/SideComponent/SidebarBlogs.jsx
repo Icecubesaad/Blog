@@ -43,7 +43,7 @@ const SidebarBlogs = () => {
   : <h2>Trending posts</h2>
 }
 {ShowHot.length > 0 ? 
-  ShowHot.map(e => <BlogsCards title={e.Title} date={e.Date} likes={e.Likes} tags={null} id={e.Id} style={{fontSize:"1rem"}}/>)
+  ShowHot.map(e => <BlogsCards author={e.User} title={e.Title} date={e.Date} likes={e.Likes} tags={null} id={e.Id} style={{fontSize:"1rem"}}/>)
   : <div style={{display:"flex",justifyContent:"center"}}><Spinner/></div>
 }
 
