@@ -34,7 +34,7 @@ const SidebarBlogs = () => {
         setstate(filtering)
     }
     return (
-        <div className='sidebar-blogs' style={{width:"20%",marginRight:"30px",display:"flex",flexDirection:"column",gap:"50px"}}>
+        <div className='sidebar-blogs'  style={{width:"20%",marginRight:"30px",display:"flex",flexDirection:"column",gap:"50px"}}>
             {state.length >= 1 ?
   <div>
     <h2>Relatable Posts</h2>
