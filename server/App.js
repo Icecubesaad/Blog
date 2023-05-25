@@ -8,7 +8,6 @@ app.use(bodyParser.urlencoded({ limit: '500mb', extended: true, parameterLimit: 
 app.use(express.json({ limit: '500mb' }));
 
 const port = 3000
-
 app.use("/api/blogs",require("./Router/Blogs"))
 app.use("/api/auth",require("./Router/Auth"))
 

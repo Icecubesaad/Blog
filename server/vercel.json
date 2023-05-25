@@ -1,17 +1,11 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "*.js",
-        "use": "@vercel/node"
-      }
-        ]
-    ,
-        "routes":[
+    "buildCommand": "cd client && npm install && npm run build",
+    "outputDirectory": "client/dist",
+    "framework": "vite",
+    "rewrites": [
         {
-        "src":"/(.*)",
-        "dest":"/"
+            "source": "/api/(.*)",
+            "destination": "/api/App.js"
         }
-        ]
-  }
-  
+    ]
+}
