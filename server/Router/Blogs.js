@@ -24,27 +24,44 @@ router.post("/Post",middleware,async(req,res)=>{
     })
     res.send(Saving)
 })
-router.get("/get/:id",async(req,res)=>{
+router.get("/get/:id/:page", async (req, res) => {
+    const page = parseInt(req.params.page);
+    const skip = (page - 1) * 4;
     const id = req.params.id;
-    if(id === "undefined"){
-        const blogs =await BlogsModel.find() 
-        res.send(blogs)
+    const except = { Image: 0, Description: 0 };
+  
+    if (id === "undefined") {
+      const blogs = await BlogsModel.find({}, except)
+        .skip(skip)
+        .limit(4);
+      res.send(blogs);
+    } else {
+      const blogs = await BlogsModel.find({ Type: id }, except)
+        .skip(skip)
+        .limit(4);
+      res.send(blogs);
     }
-    else{
-        const blogs =await BlogsModel.find({Type:id})
-        res.send(blogs)
-    }
-})
+  });
+  
+  
 router.get("/filter/:id",async(req,res)=>{
     const id = req.params.id;
-    const data = await BlogsModel.findOne({Id:id})
+    const except = {Image:0}
+    const data = await BlogsModel.findOne({Id:id},except).limit(1)
+    res.send(data)
+})
+router.get("/filterImage/:id",async(req,res)=>{
+    const id = req.params.id;
+    const except = {Title:0,Likes:0,Date:0,User:0,Description:0,Tags:0,Type:0}
+    const data = await BlogsModel.findOne({Id:id},except).limit(1)
     res.send(data)
 })
 router.get("/Relate/:id",async(req,res)=>{
+    const except = {Description:0,Image:0}
     const id = req.params.id;
-    const data = await BlogsModel.findOne({Id:id})
+    const data = await BlogsModel.findOne({Id:id},except)
     const query = { Tags: { $in: data.Tags } };
-const RelatableData =await BlogsModel.find(query);
+const RelatableData =await BlogsModel.find(query,except);
     res.send(RelatableData)
 })
 router.post("/updates/:id",async(req,res)=>{
@@ -66,7 +83,8 @@ router.post("/updates/:id",async(req,res)=>{
 })
 router.get("/hot",async(req,res)=>{
     const date = new Date();
-    const data = await BlogsModel.find();
+    const except = {Description:0,Image:0}
+    const data = await BlogsModel.find({},except);
     let mostLiked = {
         Likes : 0,
         month:0,
@@ -86,13 +104,24 @@ router.get("/hot",async(req,res)=>{
         }
     })
     data.map((e)=>{
-        if(e.Likes >= secondLiked.Likes && secondLiked.Likes<mostLiked.Likes && (e.Likes != mostLiked.Likes || e.Likes<=mostLiked.Likes)){
-            secondLiked = e;
+        if(e.Likes >= secondLiked.Likes && secondLiked.Likes<mostLiked.Likes && e.Likes != mostLiked.Likes){
+            if(secondLiked.Likes === 0 && mostLiked.Likes ===0){
+                secondLiked.Likes = e;
+            }
+            else{
+                secondLiked = e;
+            }
         }
     })
     data.map((e)=>{
-        if(e.Likes >= ThirdLiked.Likes && ThirdLiked.Likes < secondLiked.Likes && e.Likes != mostLiked.Likes &&  (e.Likes != secondLiked.Likes || e.Likes <= secondLiked.Likes)){
-            ThirdLiked = e;
+        if(e.Likes >= ThirdLiked.Likes && ThirdLiked.Likes < secondLiked.Likes && e.Likes != mostLiked.Likes &&  e.Likes != secondLiked.Likes){
+            if(ThirdLiked.Likes === 0 && secondLiked.Likes ===0 && mostLiked.Likes === 0){
+                ThirdLiked=e;
+            } 
+            else{
+
+                ThirdLiked = e;
+            }
         }
     })
     if(mostLiked.Date.some(e=>e.month === date.getMonth())){

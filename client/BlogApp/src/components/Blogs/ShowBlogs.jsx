@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
@@ -6,7 +6,10 @@ import SidebarBlogs from "../SideComponent/SidebarBlogs";
 import { useNavigate } from "react-router-dom";
 import Header from "../Header";
 import Spinner from "../spinner/BigSpinner";
+import AppContext from "../Function/AppContext";
 const ShowBlogs = () => {
+  const [image, setimage] = useState({Image:""});
+  const [BlogsFiltered, setBlogsFiltered] = useState();
   const [loading, setloading] = useState(true);
   const [ShowBlogs, setShowBlogs] = useState("");
   const [changelike, setchangelike] = useState(true);
@@ -16,24 +19,33 @@ const ShowBlogs = () => {
   useEffect(() => {
     if(localStorage.getItem("key")){
       getUser();
+      fetchBlog();
     }
-    fetchBlog();
+    else{
+      fetchBlog()
+    }
   }, [id]);
-  
   const fetchBlog = async () => {
     
     const data = await fetch(`/api/blogs/filter/${id}`, {
       method: "GET",
     });
-    if(data.status === 200){
-      setTimeout(() => {
-        setloading(false)
-      }, 700);
-    }
     const parsed = await data.json();
-    setShowBlogs(parsed);
+    if(parsed){
+      fetchImage()
+      setloading(false)
+    }
     setlikes(parsed.Likes);
+    setShowBlogs(parsed);
+    
   };
+  const fetchImage = async()=>{
+    const data = await fetch(`/api/blogs/filterImage/${id}`,{
+      method:"GET",
+    })
+    const parsed = await data.json();
+    setimage({"Image":parsed.Image})
+  }
   const UpdateLike = async () => {
     if(localStorage.getItem("key")){
       setchangelike(false);
@@ -105,11 +117,6 @@ const getUser = async()=>{
           "jwt_token":localStorage.getItem("key")
       }
   }) 
-  if(getting.status === 200){
-    setTimeout(() => {
-      setloading(false)
-    }, 300);
-  }
   const parsed = await getting.json()
   if(parsed.Liked.includes(id)){
     setchangelike(false)
@@ -123,13 +130,13 @@ const getUser = async()=>{
      {  loading ? <div style={{display:"flex",alignItems:"center",justifyContent:"center",backgroundColor:"black",height:"100vh", width:"100%"}}><Spinner/></div> : <> <Header />
       <div
         className="container-Show"
-        style={{ display: "flex", flexDirection: "row", paddingTop: "50px", backgroundColor:"black", color:"#f8f8f8" }}
+        style={{ minHeight:"100vh" , display: "flex", flexDirection: "row", paddingTop: "50px", backgroundColor:"black", color:"#f8f8f8" }}
       >
         <div
           className="container-blogs"
           style={{ width: "70%", paddingLeft: "30px" }}
           >
-         { !ShowBlogs.Image ? <Spinner/> : <img src={ShowBlogs.Image} style={{ height: "355px", width: "748px", backgroundColor: "red" }}  /> }
+         { image.Image === "" ? <div style={{height:"355px",width:"748px",backgroundColor:"grey",display:"flex",justifyContent:"center",alignItems:"center"}}><Spinner/></div> : <img src={image.Image} style={{ height: "355px", width: "748px" }}  /> }
           <div
             style={{
               display: "flex",

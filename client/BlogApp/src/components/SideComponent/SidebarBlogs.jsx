@@ -17,8 +17,6 @@ const SidebarBlogs = () => {
       method:"GET",
     })
     const parsed_hot = await data.json()
-    console.log(data)
-    console.log(parsed_hot)
 
     setShowHot(parsed_hot)
   }
@@ -46,7 +44,7 @@ const SidebarBlogs = () => {
 }
 {ShowHot.length > 0 ? 
   ShowHot.map(e => <BlogsCards title={e.Title} date={e.Date} likes={e.Likes} tags={null} id={e.Id} style={{fontSize:"1rem"}}/>)
-  : <Spinner/>
+  : <div style={{display:"flex",justifyContent:"center"}}><Spinner/></div>
 }
 
 
