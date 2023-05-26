@@ -12,14 +12,13 @@ app.use(express.json({ limit: "500mb" }));
 
 const port = process.env.PORT || 3000;
 
-router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+app.get("/", (req, res) => {
+  res.send("Express on Vercel");
 });
-
-app.use("/", router);
 app.use("/api/blogs", require("./Router/Blogs"));
 app.use("/api/auth", require("./Router/Auth"));
 
 app.listen(port, () => {
   console.log(`Server running at ${port}`);
 });
+module.exports = app;
