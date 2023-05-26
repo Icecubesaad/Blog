@@ -1,16 +1,15 @@
 const express = require("express");
 const app = express();
 const database = require("./DB/Database");
-const router = express.Router();
 const path = require("path");
 
+// Initialize database connection
 database();
 
-const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ limit: "500mb", extended: true, parameterLimit: 100000 }));
+// Use express.json() directly
 app.use(express.json({ limit: "500mb" }));
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
   res.send("Express on Vercel");
