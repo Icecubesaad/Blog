@@ -1,14 +1,7 @@
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err); // Log the error for debugging purposes
+const express = require("express")
+const app = require("./server");
 
-  // Set the response status to 500
-  res.status(500).json({ error: 'Internal Server Error' });
-});
+module.exports = (req, res) => {
 
-// Rest of your code...
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server running at ${port}`);
-});
+  app(req, res);
+};
