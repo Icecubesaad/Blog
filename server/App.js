@@ -3,7 +3,7 @@ const app = express();
 const database = require("./DB/Database");
 const path = require("path");
 const cors= require('cors')
-// Initialize database connection
+// Initialize database connectio
 database();
 // Use express.json() directly
 app.use(express.json({ limit: "500mb" }));
